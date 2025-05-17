@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bikewatching</title>
+  
+  <link rel="stylesheet" href="global.css"/>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml"/>
+  <link
+    href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <h1>🚴🏼‍♀️ Bikewatching</h1>
+  <p>An interactive map showing bike activity in Boston</p>
+
+  <!-- Step 5 滤分钟级滑块 -->
+  <label for="time-slider">
+    Filter by time:
+    <time id="selected-time"></time>
+    <em id="any-time">(any time)</em>
+  </label>
+  <input type="range" id="time-slider" min="-1" max="1440" value="-1"/>
+
+  <div id="map"></div>
+
+  <!-- ESM 脚本必须加 type="module" -->
+  <script type="module" src="map.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+/* 基本布局 */
+body {
+  font: 100%/1.5 system-ui, sans-serif;
+  max-width: 80em;
+  margin: auto;
+  padding: 1em;
+}
+#map {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  margin-top: 1em;
+}
+
+/* 滑块样式 */
+label[for="time-slider"] {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+  margin-top: 1em;
+}
+#selected-time {
+  font-weight: bold;
+}
+#any-time {
+  font-style: italic;
+  color: #666;
+}
+
+/* 在 Mapbox canvas 上方插入的 SVG 图层 */
+#station-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 圆点基础样式（pointer-events:auto 用来让 title tooltip 生效） */
+#station-layer circle {
+  pointer-events: auto;
+  stroke: white;
+  stroke-width: 1;
+  opacity: 0.8;
+}
+
+/* 配色变量 */
+:root {
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+}
+
+/* 用 CSS color-mix 根据 --departure-ratio 计算填充色 */
+#station-layer circle {
+  fill: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+  );
+}
+
+/* Legend 样式 */
+.legend {
+  display: flex;
+  margin: 1em 0;
+  height: 2em;
+  font-size: 0.9em;
+  color: white;
+  text-align: center;
+}
+.legend > div {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+  );
+}
